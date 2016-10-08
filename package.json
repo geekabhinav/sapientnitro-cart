@@ -1,0 +1,31 @@
+{
+  "name": "nitro-cart",
+  "version": "1.0.0",
+  "description": "Develop a pseudo front end application which would let users help list and browse products conveniently.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": ""
+  },
+  "author": "Abhinav Pandey <geek.abhinav@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.25.0",
+    "node-sass": "^3.10.1",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
+    "bootstrap-sass": "^3.3.7",
+    "bootswatch": "^3.3.7",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "jquery": "^3.1.1",
+    "url-loader": "^0.5.7"
+  }
+}
