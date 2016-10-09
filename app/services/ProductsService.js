@@ -3,19 +3,20 @@ var angular = require('angular');
 
 function ProductsService($http, $rootScope){
     var productList = [];
-
-    this.addProduct = function (product_options) {
-        productList.push(product_options);
-    }
+    var productTags = [];
 
     this.fetchProducts = function($http, $rootScope){
         var apiResponse = $http.get("https://hackerearth.0x10.info/api/nitro_deals?type=json&query=list_deals");
 
         apiResponse.success(function(data, status, headers, config) {
-            angular.forEach(data.deals, function(key, value){
-                productList.push(value)
+            angular.forEach(data.deals, function(product, key){
+                productList.push(product);
+                for(var i=0;i<product.tags.length;i++) {
+                    productTags.push(product.tags[i]);
+                }
             });
-            $rootScope.$broadcast('PRODUCTS_FETCHED', data.deals);
+            console.log(productTags, productList);
+            $rootScope.$broadcast('PRODUCTS_FETCHED', {products: data.deals, productTags: productTags});
         });
         apiResponse.error(function(data, status, headers, config) {
             console.log("AJAX failed!");

@@ -35,8 +35,11 @@ module.exports = {
             {
                 test: /\.(jpeg|jpg|png)$/,
                 loader: 'file?name=imgs/[name].[ext]'
+            },
+            {
+                test: /\.json$/,
+                loader: 'json-loader'
             }
-
             // You could also use other loaders the same way. I. e. the autoprefixer-loader
 
         ]

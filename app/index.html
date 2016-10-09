@@ -7,6 +7,8 @@
     <title>Product Listing &mdash; NitroCart</title>
 
     <link rel="stylesheet" href="/public/main.css">
+    <link rel="shortcut icon" href="/public/imgs/shopping-cart-favicon.png">
+
 </head>
 <body ng-app="nitroCart">
 <nav class="navbar navbar-default navbar-static-top">
@@ -22,13 +24,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <h1 class="no-margin"><a class="navbar-brand" href="/">NitroCart</a></h1>
+            <h1 class="no-margin"><a class="navbar-brand" href="/">SapientNitro Cart</a> <span class="subheading text-muted hidden-sm">&mdash; your favorite eCom hub</span></h1>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="/">All Products</a></li>
-                <li><a href="/about">Dev</a></li>
-                <li><a href="#login">Login</a></li>
+                <li class="active"><a href="/"><span class="glyphicon glyphicon glyphicon-home"></span> All Products</a></li>
+                <li><a href="https://github.com/geekabhinav/sapientnitro-cart" target="_blank"><span class="glyphicon glyphicon glyphicon-console"></span> GitHub</a></li>
+                <li><a href="https://dl.dropboxusercontent.com/u/17705961/CV_Abhinav_Pandey_9535255422_v2.pdf" target="_blank"><span class="glyphicon glyphicon glyphicon-paperclip"></span> Resume</a></li>
+                <li><a href="mailto:iam@abhi.cc"><span class="glyphicon glyphicon-phone"></span> Contact</a></li>
             </ul>
         </div>
     </div>
@@ -38,30 +41,43 @@
     <div class="row">
         <div class="col-sm-12 col-md-6">
             <!-- Search box -->
-            <div class="form-group homepage-search">
-                <div class="icon-addon addon-lg">
-                    <input type="text" placeholder="Search (by product name, description or ID)" class="form-control" id="email">
-                    <label for="email" class="glyphicon glyphicon-search" rel="tooltip" title="email"></label>
+            <form ng-submit="searchForm.submit()">
+                <div class="form-group homepage-search">
+                    <div class="icon-addon addon-lg">
+                        <input type="text" placeholder="Search (by product tags only). Hit enter or click icon" class="form-control" id="searchQuery" ng-model="searchForm.query" autocomplete="off">
+                        <label for="query" class="glyphicon glyphicon-search" rel="tooltip" title="query" ng-click="searchForm.submit()"></label>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
 
         <!-- API hits -->
-        <div class="col-sm-12 col-md-6">
+        <!-- #TODO: have to optimize this-->
+        <div class="col-sm-12 col-md-6 product_filters">
             <div class="pull-right well well-sm">
-                <b>API Hits:</b> 9000 | <b>Total Likes:</b> 20
-                <a href=""><span class="glyphicon glyphicon-refresh text-muted" aria-hidden="true"></span></a>
+                <b>API Hits:</b> {{ api_hits }} | <b>Total Likes:</b> 20
+                <!--<a href=""><span class="glyphicon glyphicon-refresh text-muted" aria-hidden="true"></span></a>-->
             </div>
             <div class="pull-right well well-sm">
-                <b>Sort:</b> <a ng-click="sortBy('price')">Price</a> | <a ng-click="sortBy('rating')">Rating</a> | <a  ng-click="sortBy('purchased')">Popularity</a>
-                <a ng-click="sortBy(null)"><span class="glyphicon glyphicon-refresh text-muted" aria-hidden="true"></span></a>
+                <b>Sort:</b>
+                <a ng-click="sortBy('price')">Price</a>
+                    <span class="sort_icon glyphicon {{ reverse ? 'glyphicon-triangle-bottom' : 'glyphicon-triangle-top' }} {{ orderPropertyName == 'price' ? '' : 'hidden'}}"></span> |
+                <a ng-click="sortBy('rating')">Rating</a>
+                    <span class="sort_icon glyphicon {{ reverse ? 'glyphicon-triangle-bottom' : 'glyphicon-triangle-top' }} {{ orderPropertyName == 'rating' ? '' : 'hidden'}}"></span> |
+                <a ng-click="sortBy('purchased_by')">Popularity</a>
+                    <span class="sort_icon glyphicon {{ reverse ? 'glyphicon-triangle-bottom' : 'glyphicon-triangle-top' }} {{ orderPropertyName == 'purchased_by' ? '' : 'hidden'}}"></span>
+                <a ng-click="sortBy(null)"><span class="glyphicon glyphicon-refresh text-muted" aria-hidden="true" title="Reset sort order"></span></a>
             </div>
         </div>
     </div>
 
+    <p ng-if="filterQuery.tags.length > 0" class="filter_text animate-if">
+        Filtering by tag: "<i>{{ filterQuery.tags }}</i>".
+        Showing {{ filtered.length }} of {{ products.length }} products.
+    </p>
     <!-- Products container -->
     <div class="products_listing row">
-        <div class="col-sm-12 col-md-6" ng-repeat="product in products | orderObjectBy:orderPropertyName:reverse">
+        <div class="col-sm-12 col-md-6" ng-repeat="product in products | filter:filterQuery | orderObjectBy:orderPropertyName:reverse as filtered">
             <div class="product_wrapper well well-sm">
                 <div class="product_image">
                     <a href="" class="thumbnail">
