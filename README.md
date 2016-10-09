@@ -7,7 +7,7 @@ You can access the live demo at [nitrocart.abhi.cc](http://nitrocart.abhi.cc). *
 
 # Features covered
 * Fetching products and API hits from HackerEarth API
-* Sorting the products on the fly using price, rating and purchased count
+* Sorting products on the fly using price, rating and purchased count
 * Search (filter) products on the fly
 * Typeahead during search
 * Responsive design
@@ -17,7 +17,7 @@ You can access the live demo at [nitrocart.abhi.cc](http://nitrocart.abhi.cc). *
 * NPM package manager
 * Webpack bundler
 * Angular 1.x
-* Bootstrap 3.x
+* Bootstrap 3.x with Bootswatch
 * SCSS
 
 # Deployment instructions
@@ -27,7 +27,7 @@ These instructions assume that you have `npm` package manager installed. If not,
   `git clone https://github.com/geekabhinav/sapientnitro-cart`  
   
 2. Go into the repo directory and install packages using
-  `npm install command`  
+  `npm install` command  
   
 3. Start the webserver with the following command
   `npm start`

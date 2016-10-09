@@ -24,7 +24,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <h1 class="no-margin"><a class="navbar-brand" href="/">SapientNitro Cart</a> <span class="subheading text-muted hidden-sm">&mdash; your favorite eCom hub</span></h1>
+            <h1 class="no-margin"><a class="navbar-brand" href="/">SapientNitro Cart</a> <span class="subheading text-muted visible-lg visible-md">&mdash; your favorite eCom hub</span></h1>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -37,7 +37,7 @@
     </div>
 </nav>
 
-<div class="container" role="main" ng-controller="ProductsCtrl">
+<div class="container body_wrapper" role="main" ng-controller="ProductsCtrl">
     <div class="row">
         <div class="col-sm-12 col-md-6">
             <!-- Search box -->
@@ -55,18 +55,16 @@
         <!-- #TODO: have to optimize this-->
         <div class="col-sm-12 col-md-6 product_filters">
             <div class="pull-right well well-sm">
-                <b>API Hits:</b> {{ api_hits }} | <b>Total Likes:</b> 20
-                <!--<a href=""><span class="glyphicon glyphicon-refresh text-muted" aria-hidden="true"></span></a>-->
-            </div>
-            <div class="pull-right well well-sm">
                 <b>Sort:</b>
+                <a ng-if="orderPropertyName" ng-click="sortBy(null)"><span class="glyphicon glyphicon-refresh text-muted" aria-hidden="true" title="Reset sort order"></span></a>
                 <a ng-click="sortBy('price')">Price</a>
                     <span class="sort_icon glyphicon {{ reverse ? 'glyphicon-triangle-bottom' : 'glyphicon-triangle-top' }} {{ orderPropertyName == 'price' ? '' : 'hidden'}}"></span> |
                 <a ng-click="sortBy('rating')">Rating</a>
                     <span class="sort_icon glyphicon {{ reverse ? 'glyphicon-triangle-bottom' : 'glyphicon-triangle-top' }} {{ orderPropertyName == 'rating' ? '' : 'hidden'}}"></span> |
                 <a ng-click="sortBy('purchased_by')">Popularity</a>
                     <span class="sort_icon glyphicon {{ reverse ? 'glyphicon-triangle-bottom' : 'glyphicon-triangle-top' }} {{ orderPropertyName == 'purchased_by' ? '' : 'hidden'}}"></span>
-                <a ng-click="sortBy(null)"><span class="glyphicon glyphicon-refresh text-muted" aria-hidden="true" title="Reset sort order"></span></a>
+                <b>API Hits:</b> {{ api_hits }} | <b>Likes:</b> 20
+
             </div>
         </div>
     </div>
@@ -104,9 +102,8 @@
                         <span class="label label-default" ng-repeat="tag in product.tags">{{ tag }}</span>
                     </p>
                     <p>
-                        <a href="{{ product.link }}" title="{{ product.link }}" target="_blank">
-                            <span class="glyphicon glyphicon-link"></span>
-                            {{ product.link | limitTo:30 }} {{ product.link.length > 40 ? '...' : '' }}
+                        <a href="{{ product.link }}" title="{{ product.link }}" target="_blank" class="wrap">
+                            <span class="glyphicon glyphicon-link"></span> {{ product.link }}
                         </a>
                     </p>
                 </div>
