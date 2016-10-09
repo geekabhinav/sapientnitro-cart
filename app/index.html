@@ -7,7 +7,6 @@
     <title>Product Listing &mdash; NitroCart</title>
 
     <link rel="stylesheet" href="/public/main.css">
-    <script src="/public/main.js"></script>
 </head>
 <body ng-app="nitroCart">
 <nav class="navbar navbar-default navbar-static-top">
@@ -54,7 +53,7 @@
                 <a href=""><span class="glyphicon glyphicon-refresh text-muted" aria-hidden="true"></span></a>
             </div>
             <div class="pull-right well well-sm">
-                <b>Sort:</b> <a href="">Price</a> | <a href="">Rating</a> | <a href="">Popularity</a>
+                <b>Sort:</b> <a ng-click="sortBy('price', 'asc')">Price</a> | <a href="">Rating</a> | <a href="">Popularity</a>
             </div>
         </div>
     </div>
@@ -139,5 +138,7 @@
         </div>
     </div>
 </footer>
+<script src="/public/main.js"></script>
+
 </body>
 </html>

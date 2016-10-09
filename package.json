@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": ""
+    "start": "webpack-dev-server"
   },
   "author": "Abhinav Pandey <geek.abhinav@gmail.com>",
   "license": "ISC",
@@ -26,6 +26,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "jquery": "^3.1.1",
+    "lodash": "^4.16.4",
     "url-loader": "^0.5.7"
   }
 }
