@@ -29,6 +29,14 @@ $icon-font-path: "../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
   padding: 0 !important;
 }
 
+.sortorder:after {
+  content: '\25b2';   // BLACK UP-POINTING TRIANGLE
+}
+
+.sortorder.reverse:after {
+  content: '\25bc';   // BLACK DOWN-POINTING TRIANGLE
+}
+
 // ================ Custom Methods ==================
 body {
   background-repeat: repeat;

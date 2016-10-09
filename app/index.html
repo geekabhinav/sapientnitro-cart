@@ -53,14 +53,15 @@
                 <a href=""><span class="glyphicon glyphicon-refresh text-muted" aria-hidden="true"></span></a>
             </div>
             <div class="pull-right well well-sm">
-                <b>Sort:</b> <a ng-click="sortBy('price', 'asc')">Price</a> | <a href="">Rating</a> | <a href="">Popularity</a>
+                <b>Sort:</b> <a ng-click="sortBy('price')">Price</a> | <a ng-click="sortBy('rating')">Rating</a> | <a  ng-click="sortBy('purchased')">Popularity</a>
+                <a ng-click="sortBy(null)"><span class="glyphicon glyphicon-refresh text-muted" aria-hidden="true"></span></a>
             </div>
         </div>
     </div>
 
     <!-- Products container -->
     <div class="products_listing row">
-        <div class="col-sm-12 col-md-6" ng-repeat="product in products">
+        <div class="col-sm-12 col-md-6" ng-repeat="product in products | orderObjectBy:orderPropertyName:reverse">
             <div class="product_wrapper well well-sm">
                 <div class="product_image">
                     <a href="" class="thumbnail">

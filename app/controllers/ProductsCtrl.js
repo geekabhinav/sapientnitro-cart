@@ -2,7 +2,7 @@
 
 var angular = require('angular');
 
-angular.module('nitroCart')
+angular.module('nitroCart', ['ngOrderObjectBy'])
     .controller("ProductsCtrl", [
         '$scope',
         '$http',
@@ -14,18 +14,11 @@ angular.module('nitroCart')
                 console.log('ctrl', data)
                 $scope.products = data;
             })
+            $scope.orderPropertyName = 'age';
+            $scope.reverse = true;
 
-            // #TODO: IMPLEMEMT FILTERS
-
-/*
-            $scope.filter = '$';
-            $scope.getFilter = function(sort_by, sort_order) {
-
-            }
-*/
-
-            $scope.sortBy = function(sortby, sort_order) {
-                console.log(sortby, sort_order);
-                $scope.products = [$scope.products[1]];
-            }
+            $scope.sortBy = function(orderPropertyName) {
+                $scope.reverse = ($scope.orderPropertyName === orderPropertyName) ? !$scope.reverse : false;
+                $scope.orderPropertyName = orderPropertyName;
+            };
         }]);

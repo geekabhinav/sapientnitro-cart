@@ -8,6 +8,7 @@ require('../../../node_modules/angular/index');
 require('../../../node_modules/angular-ui-router/release/angular-ui-router');
 
 angular.module('nitroCart', [ 'ui.router' ])
+require('./ng-order-object-by');
 require('../../controllers/ProductsCtrl');
 require('../../services/ProductsService');
 
